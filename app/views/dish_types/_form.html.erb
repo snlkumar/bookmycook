@@ -1,0 +1,22 @@
+<%= form_for @dish_type, :class=>"form form-vertical" do |f|%>
+   <% if @dish_type.errors.any? %>
+   		<%= render "commons/errors", {messages: @dish_type.errors.full_messages} %>
+   <% end %>	
+	<div class="form-group">
+		<%= f.label :name, :class => 'col-sm-2 control-label' %>
+		<div class="col-sm-6">
+		    <%=f.text_field :name, :class => "form-control"%>
+		</div>
+	</div>	
+	<div class="form-group">
+		<%= f.label :is_active, :class => 'col-sm-2 control-label' %>
+		<div class="col-sm-6">
+		    <%=f.check_box :is_active, :class => "form-control"%>
+		</div>
+	</div>
+	
+	<div class="form-actions ">
+		<%= f.submit class: "btn btn-default"  %>
+	</div>
+<% end %>
+<br>

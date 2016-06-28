@@ -1,0 +1,50 @@
+<%= form_for(@cook) do |f| %>
+	<%= f.label :first_name %>
+	<%= f.text_field :first_name %>
+	<%= f.label :mobile %>
+	<%= f.text_field :mobile %>
+	<%= f.fields_for :user do |u| %>
+		<%= u.label :username %>
+		<%= u.text_field :username %>
+		<%= u.label :email %>
+		<%= u.text_field :email %>
+		<% if @cook.new_record?  %>
+			<%= u.label :password %>
+			<%= u.text_field :password %>
+			<%= u.label :password_confirmation %>
+			<%= u.text_field :password_confirmation %>
+		<% elsif !u.object.is_verified %>
+			<div id="verify">
+				<%= u.label :verification_code %>
+				<%= u.text_field :verification_code %> <a href="#" id="verify_link" data-disable-with="Verifing..." onclick='verify_code(this)'>Verify</a>
+				<%= u.hidden_field :is_verified %>
+			</div>
+		<% end %>
+	<% end %>
+<%= f.submit  %>	
+<% end %>
+  <script type="text/javascript">
+  	var verify_code = function(obj){
+  		var link = obj;
+  		var code = $("#cook_user_attributes_verification_code").val();
+  		var cook_id = <%=@cook.id %>
+  		var status = 200
+  		try {
+	  		$.ajax({
+		        type: 'PUT',
+		        url: "/cooks/"+cook_id+"/verify",
+		        data: {code: code},
+		        dataType: "json",
+		        success: function(data) {	        	
+		        	if (data.status != 422){
+		        		$("#verify").html("Verified");
+		        	}else{
+		        		$("#verify_link").text("Not Verified");		        		
+		        	}
+		        }
+	    	});
+	    }catch(err){
+	    	alert("ddfdf");
+	    } 	
+  	}
+  </script>

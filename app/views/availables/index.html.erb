@@ -1,0 +1,33 @@
+<section class="vbox">
+  <section class="scrollable padder">
+    <div class="col-sm-12" >
+      	<section class="add-student-form panel panel-default">
+	        <header class="add-student-form panel-heading font-bold">
+	        	Available
+	        </header>	        
+	      	<div class="panel-body">
+	      		<div class="single-page-form">
+	      			<%= render "form" %>
+	      		</div>
+	      		<table class="table table-striped">
+		            <tr>
+		              	<thead>
+			              <th>Name </th>			              			             
+			              <th> Action </th>			              	            
+			            </thead>
+		            </tr>
+		            <tbody>
+		            	<% @availables.try(:each) do |l|%>
+		            		<tr>
+		            			<td><%= l.name %></td>			
+		            			<td><%= link_to "Edit", "#", url: edit_available_path(l), onclick: "edit_record(this)" %> | 
+		            				<%= link_to "Delete", l, :method=>:delete, :class=>:destroy, :confirm => "Are you sure ?" %></td>
+		            		</tr>
+		            	<% end %>
+		            </tbody>
+          		</table>
+	    	</div>
+    	</section>   	
+    </div>
+  </section>
+</section>

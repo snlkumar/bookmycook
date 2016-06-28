@@ -1,0 +1,36 @@
+<section class="vbox">
+  <section class="scrollable padder">
+    <div class="col-sm-12" >
+      	<section class="add-student-form panel panel-default">
+	        <header class="add-student-form panel-heading font-bold">
+	        	Dish Type
+	        </header>	        
+	      	<div class="panel-body">
+	      		<div class="single-page-form">
+	      			<%= render "form" %>
+	      		</div>
+	      		<table class="table table-striped">
+		            <tr>
+		              	<thead>
+			              <th>Name </th>
+			              <th>Is Active</th>			             
+			              <th> Action </th>			              	            
+			            </thead>
+		            </tr>
+		            <tbody>
+		            	<% @dish_types.try(:each) do |dt|%>
+		            		<tr>
+		            			<td><%= dt.name %></td>
+		            			
+		            			<td><%=dt.is_active ? "Yes" : "No" %></td>		            			
+		            			<td><%= link_to "Edit", "#", url: edit_dish_type_path(dt), onclick: "edit_record(this)" %> | 
+		            				<%= link_to "Delete", dt, :method=>:delete, :class=>:destroy, :confirm => "Are you sure ?" %></td>
+		            		</tr>
+		            	<% end %>
+		            </tbody>
+          		</table>
+	    	</div>
+    	</section>   	
+    </div>
+  </section>
+</section>

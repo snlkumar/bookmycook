@@ -1,0 +1,31 @@
+<%= form_for(@cook) do |f| %>
+	<hr>
+	<h1>Available For:</h1>
+	<% @availables.each do |available| %>
+		<label>
+		  	<%= check_box_tag "cook[available_ids][]", available.id, @cook.availables.include?(available) %>
+		  	<%= available.name %>
+	  	</label>
+	<% end %>
+	<hr>
+	<h1>Location For:</h1>
+	<% @locations.each do |location| %>
+		<label>
+		  	<%= check_box_tag "cook[location_ids][]", location.id, @cook.locations.include?(location) %>
+		  	<%= location.name %>
+	  	</label>
+	<% end %>
+	<hr>
+	<h1>Skills:</h1>
+	<% @dish_types.each do |dish_type| %>
+		<label>
+		  	<%= check_box_tag "cook[dish_type_ids][]", dish_type.id, @cook.dish_types.include?(dish_type) %>
+		  	<%= dish_type.name %>
+	  	</label>
+	<% end %>
+	<%= f.submit %>	
+<% end %>
+<hr>
+<h1>Rating</h1>
+Tasty  : <%= rating_for @cook, 'skills', auth_token: "dfddf" %>
+education : <%= rating_for @cook, 'availables' %>

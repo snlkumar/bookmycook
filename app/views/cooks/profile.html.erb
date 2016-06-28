@@ -1,0 +1,22 @@
+<hr>
+<h1>Personal Info</h1>
+<div>
+<%= @cook.first_name %>
+<%= @cook.mobile %>
+<%= @cook.address %>
+<%= @cook.state %>
+<%= @cook.country %>
+</div>
+<hr>
+<h1>Professional Info</h1>
+<div>
+	<%@cook.availables.each do |a| %>
+		<%= a.name %>
+	<% end %>
+	<% @cook.locations.each do |l| %>
+		<%= l.name %>
+	<% end %>
+	<% @cook.skills.each do |s| %>
+		<%= s.dish_type.name %>
+	<% end %>
+</div>

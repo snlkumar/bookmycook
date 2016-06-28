@@ -1,0 +1,36 @@
+<section class="vbox">
+  <section class="scrollable padder">
+    <div class="col-sm-12" >
+      	<section class="add-student-form panel panel-default">
+	        <header class="add-student-form panel-heading font-bold">
+	        	Location
+	        </header>	        
+	      	<div class="panel-body">
+	      		<div class="single-page-form">
+	      			<%= render "form" %>
+	      		</div>
+	      		<table class="table table-striped">
+		            <tr>
+		              	<thead>
+			              <th>Name </th>
+			              <th>Pincode</th>			             
+			              <th> Action </th>			              	            
+			            </thead>
+		            </tr>
+		            <tbody>
+		            	<% @locations.try(:each) do |l|%>
+		            		<tr>
+		            			<td><%= l.name %></td>
+		            			
+		            			<td><%=l.pincode %></td>		            			
+		            			<td><%= link_to "Edit", "#", url: edit_location_path(l), onclick: "edit_record(this)" %> | 
+		            				<%= link_to "Delete", l, :method=>:delete, :class=>:destroy, :confirm => "Are you sure ?" %></td>
+		            		</tr>
+		            	<% end %>
+		            </tbody>
+          		</table>
+	    	</div>
+    	</section>   	
+    </div>
+  </section>
+</section>
