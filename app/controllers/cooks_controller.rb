@@ -1,6 +1,7 @@
 class CooksController < ApplicationController	
 	before_action :cook, except: [:new, :create, :dashboard]	
     respond_to :json, :html
+    layout "profile", :only => [ :profile ]
 
     def dashboard
     end    

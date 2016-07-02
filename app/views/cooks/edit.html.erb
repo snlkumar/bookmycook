@@ -1,1 +1,56 @@
-<%= render "form" %>
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	<%= form_for @cook , html: {class: "reg-page"} do |f| %>
+		<div class="reg-header">
+      <h2>Verify mobile number</h2>                          
+    </div>
+		<%= f.label :first_name %>
+		<%= f.text_field :first_name, class: "form-control margin-bottom-20" %>
+		<%= f.label :mobile %>
+		<%= f.text_field :mobile, class: "form-control margin-bottom-20" %>
+		<%= f.fields_for :user do |u| %>
+			<%= u.label :username %>
+			<%= u.text_field :username, class: "form-control margin-bottom-20" %>
+			<%= u.label :email %>
+			<%= u.text_field :email, class: "form-control margin-bottom-20" %>
+			<div id="verify">
+				<%= u.label :verification_code %>
+				<%= u.text_field :verification_code, class: "form-control margin-bottom-20" %> <a href="#" id="verify_link" data-disable-with="Verifing..." onclick='verify_code(this)'>Verify</a>
+				<%= u.hidden_field :is_verified %>
+			</div>			
+		<% end %>
+		<div class="row">
+      <div class="col-lg-6">                                
+      </div>
+      <div class="col-lg-6 text-right">
+      	<%= f.submit "Update", class: "btn-u"  %>                                      
+      </div>
+    </div>
+	<% end %>
+</div>
+
+
+  <script type="text/javascript">
+  	var verify_code = function(obj){
+  		var link = obj;
+  		var code = $("#cook_user_attributes_verification_code").val();
+  		var cook_id = <%=@cook.id %>
+  		var status = 200
+  		try {
+	  		$.ajax({
+		        type: 'PUT',
+		        url: "/cooks/"+cook_id+"/verify",
+		        data: {code: code},
+		        dataType: "json",
+		        success: function(data) {	        	
+		        	if (data.status != 422){
+		        		$("#verify").html("Verified");
+		        	}else{
+		        		$("#verify_link").text("Not Verified");		        		
+		        	}
+		        }
+	    	});
+	    }catch(err){
+	    	alert("ddfdf");
+	    } 	
+  	}
+  </script>

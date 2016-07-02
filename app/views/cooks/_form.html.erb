@@ -1,50 +1,39 @@
-<%= form_for(@cook) do |f| %>
-	<%= f.label :first_name %>
-	<%= f.text_field :first_name %>
-	<%= f.label :mobile %>
-	<%= f.text_field :mobile %>
-	<%= f.fields_for :user do |u| %>
-		<%= u.label :username %>
-		<%= u.text_field :username %>
-		<%= u.label :email %>
-		<%= u.text_field :email %>
-		<% if @cook.new_record?  %>
-			<%= u.label :password %>
-			<%= u.text_field :password %>
-			<%= u.label :password_confirmation %>
-			<%= u.text_field :password_confirmation %>
-		<% elsif !u.object.is_verified %>
-			<div id="verify">
-				<%= u.label :verification_code %>
-				<%= u.text_field :verification_code %> <a href="#" id="verify_link" data-disable-with="Verifing..." onclick='verify_code(this)'>Verify</a>
-				<%= u.hidden_field :is_verified %>
-			</div>
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	<%= form_for @cook , html: {class: "reg-page"} do |f| %>
+		<div class="reg-header">
+      <h2>Register a new account</h2>
+      <p>Already Signed Up? Click <a href="page_login.html" class="color-green">Sign In</a> to login your account.</p>                    
+    </div>
+		<%= f.label :first_name %>
+		<%= f.text_field :first_name, class: "form-control margin-bottom-20" %>
+		<%= f.label :mobile %>
+		<%= f.text_field :mobile, class: "form-control margin-bottom-20" %>
+		<%= f.fields_for :user do |u| %>
+			<%= u.label :username %>
+			<%= u.text_field :username, class: "form-control margin-bottom-20" %>
+			<%= u.label :email %>
+			<%= u.text_field :email, class: "form-control margin-bottom-20" %>			
+			<div class="row">
+				<div class="col-sm-6">
+					<%= u.label :password %>
+					<%= u.text_field :password, class: "form-control margin-bottom-20" %>
+				</div>
+				<div class="col-sm-6">
+					<%= u.label :password_confirmation %>
+					<%= u.text_field :password_confirmation, class: "form-control margin-bottom-20"%>
+				</div>
+			</div>			
 		<% end %>
+		<div class="row">
+      <div class="col-lg-6">
+        <label class="checkbox">
+          <input type="checkbox"> 
+          I read <a href="page_terms.html" class="color-green">Terms and Conditions</a>
+        </label>                        
+      </div>
+      <div class="col-lg-6 text-right">
+      	<%= f.submit "Register", class: "btn-u"   %>                                      
+      </div>
+    </div>
 	<% end %>
-<%= f.submit  %>	
-<% end %>
-  <script type="text/javascript">
-  	var verify_code = function(obj){
-  		var link = obj;
-  		var code = $("#cook_user_attributes_verification_code").val();
-  		var cook_id = <%=@cook.id %>
-  		var status = 200
-  		try {
-	  		$.ajax({
-		        type: 'PUT',
-		        url: "/cooks/"+cook_id+"/verify",
-		        data: {code: code},
-		        dataType: "json",
-		        success: function(data) {	        	
-		        	if (data.status != 422){
-		        		$("#verify").html("Verified");
-		        	}else{
-		        		$("#verify_link").text("Not Verified");		        		
-		        	}
-		        }
-	    	});
-	    }catch(err){
-	    	alert("ddfdf");
-	    } 	
-  	}
-  </script>
+</div>

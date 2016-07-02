@@ -1,3 +1,174 @@
+<div class="col-md-12">
+                  <!--Profile Body-->
+  <div class="profile-body">
+      <div class="profile-bio">
+          <div class="row">
+              <div class="col-md-3">
+                  <img class="img-responsive md-margin-bottom-10" src="/../assets/team/5.jpg" alt="">
+                  <a class="btn-u btn-u-sm" href="#">Change Picture</a>
+              </div>
+              <div class="col-md-7">
+                  <h2><%= @cook.first_name %></h2>
+                  <span><strong>State:</strong> <%= @cook.state %></span>
+                  <span><strong>Country:</strong> <%= @cook.country %></span>
+                  <hr>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget massa nec turpis congue bibendum. Integer nulla felis, porta suscipit nulla et, dignissim commodo nunc. Morbi a semper nulla.</p>
+                  <p>Proin mauris odio, pharetra quis ligula non, vulputate vehicula quam. Nunc in libero vitae nunc ultricies tincidunt ut sed leo. Sed luctus dui ut congue consequat. Cras consequat nisl ante, nec malesuada velit pellentesque ac. Pellentesque nec arcu in ipsum iaculis convallis.</p>
+              </div>
+          </div>    
+      </div><!--/end row-->
+              
+      <hr>
+
+      <div class="row">
+          <!--Social Icons v3-->
+          <div class="col-sm-6 sm-margin-bottom-30">
+              <div class="panel panel-profile">
+                  <div class="panel-heading overflow-h">
+                      <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i> Availables For</h2>
+                      <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                  </div>
+                  <div class="panel-body">
+                       <ul class="list-unstyled social-contacts-v2">
+                       	<%@cook.availables.each do |a| %>
+                       		<li><%= a.name %></li>													
+												<% end %>                          
+                      </ul>
+                  </div>       
+              </div>
+          </div>
+          <!--End Social Icons v3-->
+
+          <!--Skills-->
+          <div class="col-sm-6 sm-margin-bottom-30">
+              <div class="panel panel-profile">
+                  <div class="panel-heading overflow-h">
+                      <h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> Skills</h2>
+                      <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                  </div>
+                  <div class="panel-body">
+                  	<% @cook.skills.each do |s| %>
+											<small><%= s.dish_type.name %></small>
+											<small>92%</small>
+                      <div class="progress progress-u progress-xxs">
+                          <div style="width: 92%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="92" role="progressbar" class="progress-bar progress-bar-u">
+                          </div>
+                      </div>
+										<% end %>
+                  </div>
+              </div>
+          </div>    
+          <!--End Skills-->                    
+      </div><!--/end row-->    
+
+      <br>
+      <div class="row">
+      	<!--Social Contacts v2-->
+          <div class="col-sm-6">
+              <div class="panel panel-profile">
+                  <div class="panel-heading overflow-h">
+                      <h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> Locations For </h2>
+                      <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                  </div>
+                  <div class="panel-body">
+                      <ul class="list-unstyled social-contacts-v3">
+                      	<% @cook.locations.each do |l| %>
+													<li><%= l.name %></li>
+												<% end %>                          
+                      </ul>
+                  </div>
+              </div>
+          </div>    
+          <!--End Social Contacts v2-->
+
+          <!--Design Skills-->
+          <div class="col-sm-6">
+              <div class="panel panel-profile">
+                  <div class="panel-heading overflow-h">
+                      <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i> Language Skills</h2>
+                      <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                  </div>
+                  <div class="panel-body">
+                      <div class="row">
+                           <div class="p-chart col-sm-6 col-xs-6 sm-margin-bottom-10">
+                              <div class="circle margin-bottom-20" id="circle-4"></div>
+                              <h3 class="heading-xs">Hindi</h3>
+                              <p><i class="fa fa-check" aria-hidden="true"></i> Read  <i class="fa fa-check" aria-hidden="true"></i> Write <i class="fa fa-check" aria-hidden="true"></i> Speak</p>
+                          </div> 
+                          <div class="p-chart col-sm-6 col-xs-6 sm-margin-bottom-10">
+                              <div class="circle margin-bottom-20" id="circle-4"></div>
+                              <h3 class="heading-xs">English</h3>
+                              <p><i class="fa fa-check" aria-hidden="true"></i> Read  <i class="fa fa-check" aria-hidden="true"></i> Write <i class="fa fa-times" aria-hidden="true"></i> Speak</p>
+                          </div> 
+                      </div>
+                  </div>       
+              </div>
+          </div>
+
+          <div class="col-sm-6">
+              <div class="panel panel-profile">
+                  <div class="panel-heading overflow-h">
+                      <h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> Rating </h2>
+                      <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                  </div>
+                  <div class="panel-body">
+                      <ul class="list-unstyled social-contacts-v3">
+                      	Tasty  : <%= rating_for @cook, 'skills' %>
+                        Education : <%= rating_for @cook, 'availables' %>  
+                        Original Score: <%= rating_for @cook, "skills", disable_after_rate: true, imdb_avg: true %>                        
+                      </ul>
+                  </div>
+              </div>
+          </div>  
+          <!--End Design Skills--> 
+      </div>                    
+      <br>
+      <!--Timeline-->
+      <div class="panel panel-profile">
+          <div class="panel-heading overflow-h">
+              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i> Experience</h2>
+              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+          </div>
+          <div class="panel-body margin-bottom-40">
+              <ul class="timeline-v2 timeline-me">
+                  <li>
+                      <time datetime="" class="cbp_tmtime"><span>Mobile Design</span> <span>2012 - Current</span></time>
+                      <i class="cbp_tmicon rounded-x hidden-xs"></i>
+                      <div class="cbp_tmlabel">
+                          <h2>BFC NYC Partners</h2>
+                          <p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Peasprouts wattle seed rutabaga okra yarrow cress avocado grape.</p> 
+                      </div>
+                  </li>
+                  <li>
+                      <time datetime="" class="cbp_tmtime"><span>Web Designer</span> <span>2007 - 2012</span></time>
+                      <i class="cbp_tmicon rounded-x hidden-xs"></i>
+                      <div class="cbp_tmlabel">
+                      <h2>Freelance</h2>
+                          <p>Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce.</p>
+                      </div>
+                  </li>
+                  <li>
+                      <time datetime="" class="cbp_tmtime"><span>Photodesigner</span> <span>2003 - 2007</span></time>
+                      <i class="cbp_tmicon rounded-x hidden-xs"></i>
+                      <div class="cbp_tmlabel">
+                      <h2>Toren Condo</h2>
+                          <p>Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot.</p>
+                      </div>
+                  </li>
+              </ul>
+          </div>    
+      </div>
+      <!--End Timeline-->
+
+  </div>
+  <!--End Profile Body-->
+</div>
+
+
+
+<!-- 
+
+
 <hr>
 <h1>Personal Info</h1>
 <div>
@@ -10,13 +181,22 @@
 <hr>
 <h1>Professional Info</h1>
 <div>
-	<%@cook.availables.each do |a| %>
-		<%= a.name %>
-	<% end %>
-	<% @cook.locations.each do |l| %>
-		<%= l.name %>
-	<% end %>
-	<% @cook.skills.each do |s| %>
-		<%= s.dish_type.name %>
-	<% end %>
-</div>
+<h3>Available For:</h3>
+<%@cook.availables.each do |a| %>
+	<%= a.name %>
+<% end %>
+<hr>
+<h3>Location For:</h3>
+<% @cook.locations.each do |l| %>
+	<%= l.name %>
+<% end %>
+<hr>
+<h3>Expertise in:</h3>
+<% @cook.skills.each do |s| %>
+	<%= s.dish_type.name %>
+<% end %>
+<hr>
+<h3>Rating</h3>
+Tasty  : <%= rating_for @cook, 'skills' %>
+  education : <%= rating_for @cook, 'availables' %>
+</div> -->

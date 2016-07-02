@@ -12,4 +12,10 @@
  *
  *= require_tree .
  *= require_self
+ *= require plugins/bootstrap.min.css
+ *= require font-awesome
+ *= require line-icons.css
+ *= require custom-sky-forms.css
+ *= require theme/default.css
+
  */
