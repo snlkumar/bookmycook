@@ -1,0 +1,50 @@
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	<%= form_for @owner , html: {class: "reg-page"} do |f| %>
+		<div class="reg-header">
+      <h2>Edit Profile</h2>                          
+    </div>
+		<%= f.label :name %>
+		<%= f.text_field :name, class: "form-control margin-bottom-20" %>
+		<%= f.label :mobile %>
+		<%= f.text_field :mobile, class: "form-control margin-bottom-20" %>
+		<%= f.label :address %>
+		<%= f.text_field :address, class: "form-control margin-bottom-20" %>
+		<div class="row">
+			<div class="col-sm-6">
+				<%= f.label :state %>
+				<%= f.text_field :state, class: "form-control margin-bottom-20" %>
+			</div>
+			<div class="col-sm-6">
+				<%= f.label :country %>
+				<%= f.text_field :country, class: "form-control margin-bottom-20"%>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<%= f.label :need_for %>
+				<%= f.text_field :need_for, class: "form-control margin-bottom-20" %>
+			</div>
+			<div class="col-sm-6">
+				<%= f.label :location %>
+				<%= f.text_field :location, class: "form-control margin-bottom-20"%>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<%= f.label :adults %>
+				<%= f.text_field :adults, class: "form-control margin-bottom-20" %>
+			</div>
+			<div class="col-sm-6">
+				<%= f.label :children, 'Childreen' %>
+				<%= f.text_field :children, class: "form-control margin-bottom-20"%>
+			</div>
+		</div>	
+		<div class="row">
+      <div class="col-lg-6">                                
+      </div>
+      <div class="col-lg-6 text-right">
+      	<%= f.submit "Update", class: "btn-u"  %>                                      
+      </div>
+    </div>
+	<% end %>
+</div>

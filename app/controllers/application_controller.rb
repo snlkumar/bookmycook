@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     edit_profile_cook_path(current_user.cook) if current_user.cook
+    edit_profile_owner_path(current_user.owner)
+  end
+
+  def login_required
+    redirect_to root_path unless current_user
   end
 
   protected

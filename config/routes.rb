@@ -14,6 +14,16 @@ Rails.application.routes.draw do
       put :verify 
     end
   end
+
+  resources :owners do
+    collection do
+      get :signup
+    end
+    member do
+      get :dashboard, :profile, :edit_profile
+      put :verify 
+    end
+  end
   resources :languages
   resources :availables
   # You can have the root of your site routed with "root"

@@ -89,12 +89,14 @@ ActiveRecord::Schema.define(version: 20160623035321) do
   end
 
   create_table "owners", force: :cascade do |t|
-    t.string   "first_name"
-    t.integer  "mobile"
+    t.string   "name"
+    t.string   "mobile"
     t.string   "address"
     t.string   "state"
     t.string   "country",    default: "India"
     t.string   "need_for"
+    t.string   "location"
+    t.string   "language"
     t.integer  "adults"
     t.integer  "children"
     t.boolean  "want_demo",  default: false

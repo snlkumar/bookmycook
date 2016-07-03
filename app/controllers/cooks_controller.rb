@@ -1,7 +1,8 @@
 class CooksController < ApplicationController	
+	before_action :login_required, only: [:edit, :update, :edit_profile]
 	before_action :cook, except: [:new, :create, :dashboard]	
     respond_to :json, :html
-    layout "profile", :only => [ :profile ]
+    layout "profile", :only => [ :profile, :dashboard ]
 
     def dashboard
     end    

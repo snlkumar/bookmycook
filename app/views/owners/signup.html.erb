@@ -1,0 +1,39 @@
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	<%= form_for @owner , html: {class: "reg-page"} do |f| %>
+		<div class="reg-header">
+      <h2>Register a new account</h2>
+      <p>Already Signed Up? Click <a href="page_login.html" class="color-green">Sign In</a> to login your account.</p>                    
+    </div>
+		<%= f.label :name %>
+		<%= f.text_field :name, class: "form-control margin-bottom-20" %>
+		<%= f.label :mobile %>
+		<%= f.text_field :mobile, class: "form-control margin-bottom-20" %>
+		<%= f.fields_for :user do |u| %>
+			<%= u.label :username %>
+			<%= u.text_field :username, class: "form-control margin-bottom-20" %>
+			<%= u.label :email %>
+			<%= u.text_field :email, class: "form-control margin-bottom-20" %>			
+			<div class="row">
+				<div class="col-sm-6">
+					<%= u.label :password %>
+					<%= u.text_field :password, class: "form-control margin-bottom-20" %>
+				</div>
+				<div class="col-sm-6">
+					<%= u.label :password_confirmation %>
+					<%= u.text_field :password_confirmation, class: "form-control margin-bottom-20"%>
+				</div>
+			</div>			
+		<% end %>
+		<div class="row">
+      <div class="col-lg-6">
+        <label class="checkbox">
+          <input type="checkbox"> 
+          I read <a href="page_terms.html" class="color-green">Terms and Conditions</a>
+        </label>                        
+      </div>
+      <div class="col-lg-6 text-right">
+      	<%= f.submit "Register", class: "btn-u"   %>                                      
+      </div>
+    </div>
+	<% end %>
+</div>
