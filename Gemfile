@@ -49,3 +49,6 @@ end
 gem "devise"
 gem 'active_model_otp'
 gem 'ratyrate', :github => 'wazery/ratyrate'
+gem "typhoeus"
+gem 'carrierwave'
+gem 'mini_magick'

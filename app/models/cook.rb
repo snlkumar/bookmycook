@@ -7,4 +7,5 @@ class Cook < ActiveRecord::Base
 	has_many :dish_types, through: :skills
 	accepts_nested_attributes_for :user
 	ratyrate_rateable "skills", "availables"
+	mount_uploader :photo, PhotoUploader
 end

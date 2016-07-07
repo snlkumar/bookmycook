@@ -4,8 +4,9 @@
       <div class="profile-bio">
           <div class="row">
               <div class="col-md-3">
-                  <img class="img-responsive md-margin-bottom-10" src="/../assets/team/5.jpg" alt="">
-                  <a class="btn-u btn-u-sm" href="#">Change Picture</a>
+                <%= image_tag(@cook.photo_url(:thumb), class: "img-responsive md-margin-bottom-10") %>
+                  <!-- <img class="img-responsive md-margin-bottom-10" src="/../assets/team/5.jpg" alt=""> -->
+                  <a class="btn-u btn-u-sm" href="<%= edit_profile_cook_path(id: @cook.id) %>">Change Picture</a>
               </div>
               <div class="col-md-7">
                   <h2><%= @cook.first_name %></h2>
@@ -26,7 +27,7 @@
               <div class="panel panel-profile">
                   <div class="panel-heading overflow-h">
                       <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i> Availables For</h2>
-                      <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                      <a href="<%= edit_profile_cook_path(id: @cook.id) %>"><i class="fa fa-pencil pull-right"></i></a>
                   </div>
                   <div class="panel-body">
                        <ul class="list-unstyled social-contacts-v2">
@@ -44,7 +45,7 @@
               <div class="panel panel-profile">
                   <div class="panel-heading overflow-h">
                       <h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> Skills</h2>
-                      <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                       <a href="<%= edit_profile_cook_path(id: @cook.id) %>"><i class="fa fa-pencil pull-right"></i></a>
                   </div>
                   <div class="panel-body">
                   	<% @cook.skills.each do |s| %>
@@ -68,7 +69,7 @@
               <div class="panel panel-profile">
                   <div class="panel-heading overflow-h">
                       <h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> Locations For </h2>
-                      <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                       <a href="<%= edit_profile_cook_path(id: @cook.id) %>"><i class="fa fa-pencil pull-right"></i></a>
                   </div>
                   <div class="panel-body">
                       <ul class="list-unstyled social-contacts-v3">
@@ -85,8 +86,8 @@
           <div class="col-sm-6">
               <div class="panel panel-profile">
                   <div class="panel-heading overflow-h">
-                      <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i> Language Skills</h2>
-                      <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                      <h2 class="panel-title heading-sm pull-left"></i> Language Skills</h2>
+                       <a href="<%= edit_profile_cook_path(id: @cook.id) %>"><i class="fa fa-pencil pull-right"></i></a>
                   </div>
                   <div class="panel-body">
                       <div class="row">
@@ -109,7 +110,7 @@
               <div class="panel panel-profile">
                   <div class="panel-heading overflow-h">
                       <h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> Rating </h2>
-                      <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                       <a href="<%= edit_profile_cook_path(id: @cook.id) %>"><i class="fa fa-pencil pull-right"></i></a>
                   </div>
                   <div class="panel-body">
                       <ul class="list-unstyled social-contacts-v3">
@@ -127,7 +128,7 @@
       <div class="panel panel-profile">
           <div class="panel-heading overflow-h">
               <h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i> Experience</h2>
-              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+               <a href="<%= edit_profile_cook_path(id: @cook.id) %>"><i class="fa fa-pencil pull-right"></i></a>
           </div>
           <div class="panel-body margin-bottom-40">
               <ul class="timeline-v2 timeline-me">

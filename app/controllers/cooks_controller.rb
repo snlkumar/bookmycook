@@ -2,9 +2,10 @@ class CooksController < ApplicationController
 	before_action :login_required, only: [:edit, :update, :edit_profile]
 	before_action :cook, except: [:new, :create, :dashboard]	
     respond_to :json, :html
-    layout "profile", :only => [ :profile, :dashboard ]
+    layout "profile", :only => [ :profile, :dashboard, :edit_profile]
 
     def dashboard
+
     end    
 
 	def new		
@@ -14,7 +15,8 @@ class CooksController < ApplicationController
 
 	def create
 		@cook = Cook.new params[:cook].permit!
-		return render "new" unless @cook.save		
+		return render "new" unless @cook.save	
+		Typhoeus.get("http://api.msg91.com/api/sendhttp.php?authkey=116833AGwj2DXk3Jc577aa295&mobiles=#{@cook.mobile}&message=#{@cook.user.otp_code}&sender=Bookmy&route=4&country=91")	
 		flash[:notice] = "Cook created successfully please verify your number"
 		redirect_to edit_cook_path(@cook)		
 	end

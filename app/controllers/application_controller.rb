@@ -6,8 +6,11 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    edit_profile_cook_path(current_user.cook) if current_user.cook
-    edit_profile_owner_path(current_user.owner)
+    if resource.cook
+      edit_profile_cook_path(id: current_user.cook.id)
+    else
+      edit_profile_owner_path(id: current_user.owner.id)
+    end
   end
 
   def login_required

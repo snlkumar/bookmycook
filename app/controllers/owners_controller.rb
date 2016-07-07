@@ -52,6 +52,8 @@ class OwnersController < ApplicationController
 	end
 
 	def edit_profile		
+		@availables = Available.all
+		@locations = Location.all
 	end
 
 	private

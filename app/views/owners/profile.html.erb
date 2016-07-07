@@ -30,10 +30,7 @@
                   </div>
                   <div class="panel-body">
                        <ul class="list-unstyled social-contacts-v2">
-                       	<% need_for =  @owner.need_for ? @owner.need_for.split(",") : []%>
-                       	<%need_for.each do |a| %>
-                       		<li><%= a %></li>													
-						<% end %>                          
+                       	                          
                       </ul>
                   </div>       
               </div>
@@ -71,8 +68,12 @@
                       <a href="#"><i class="fa fa-cog pull-right"></i></a>
                   </div>
                   <div class="panel-body">
-                      <ul class="list-unstyled social-contacts-v3">                      	
-						<li><%= @owner.location %></li>
+                      <ul class="list-unstyled social-contacts-v3">
+                      <% need_for =  @owner.location ? @owner.location.split(",") : []%>
+                        <%need_for.each do |a| %>
+                          <li><%= a %></li>                         
+                      <% end %>                  	
+						
                       </ul>
                   </div>
               </div>

@@ -1,31 +1,43 @@
-<%= form_for(@cook) do |f| %>
-	<hr>
-	<h1>Available For:</h1>
-	<% @availables.each do |available| %>
-		<label>
-		  	<%= check_box_tag "cook[available_ids][]", available.id, @cook.availables.include?(available) %>
-		  	<%= available.name %>
-	  	</label>
+<div class="col-md-offset-2 col-sm-8 col-sm-offset-2">
+	<%= form_for @cook , html: {class: "reg-page"} do |f| %>
+		<div class="reg-header">
+	      <h2>Edit Profile</h2>                          
+	    </div>
+	    <%= f.label :photo %>
+		<%= f.file_field :photo, class: "form-control margin-bottom-20" %>
+		<%= f.label :first_name %>
+		<%= f.text_field :first_name, class: "form-control margin-bottom-20" %>
+		<%= f.label :mobile %>
+		<%= f.text_field :mobile, class: "form-control margin-bottom-20" %>	
+		<%= f.label :available_for %>
+		<% @availables.each do |available| %>
+			<label class="form-control margin-bottom-20">
+				<%= check_box_tag "cook[available_ids][]", available.id, @cook.availables.include?(available) %>
+			  	<%= available.name %>
+		  	</label>
+		<% end %>
+		<br>
+		<%= f.label :location_for %>
+		<% @locations.each do |location| %>
+			<label class="form-control margin-bottom-20">
+			  	<%= check_box_tag "cook[location_ids][]", location.id, @cook.locations.include?(location) %>
+			  	<%= location.name %>
+		  	</label>
+		<% end %>
+		<br>
+		<%= f.label :skills %>
+		<% @dish_types.each do |dish_type| %>
+			<label class="form-control margin-bottom-20">
+			  	<%= check_box_tag "cook[dish_type_ids][]", dish_type.id, @cook.dish_types.include?(dish_type) %>
+			  	<%= dish_type.name %>
+		  	</label>
+		<% end %>		
+		<div class="row">
+	      <div class="col-lg-6">                                
+	      </div>
+	      <div class="col-lg-6 text-right">
+	      	<%= f.submit "Update", class: "btn-u"  %>                                      
+	      </div>
+    	</div>
 	<% end %>
-	<hr>
-	<h1>Location For:</h1>
-	<% @locations.each do |location| %>
-		<label>
-		  	<%= check_box_tag "cook[location_ids][]", location.id, @cook.locations.include?(location) %>
-		  	<%= location.name %>
-	  	</label>
-	<% end %>
-	<hr>
-	<h1>Skills:</h1>
-	<% @dish_types.each do |dish_type| %>
-		<label>
-		  	<%= check_box_tag "cook[dish_type_ids][]", dish_type.id, @cook.dish_types.include?(dish_type) %>
-		  	<%= dish_type.name %>
-	  	</label>
-	<% end %>
-	<%= f.submit %>	
-<% end %>
-<hr>
-<h1>Rating</h1>
-Tasty  : <%= rating_for @cook, 'skills' %>
-education : <%= rating_for @cook, 'availables' %>
+</div>
