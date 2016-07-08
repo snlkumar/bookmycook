@@ -1,9 +1,16 @@
+<% content_for :breadcrumb do %>
+  <h1 class="pull-left">Cook Request</h1>
+  <ul class="pull-right breadcrumb">
+      <li><a href="index.html">Home</a></li>     
+      <li class="active">Cook Request</li>
+  </ul>
+<% end %>
 <div class="col-md-12">                  
   <div class="profile-body">
     <div class="profile-bio">
         <div class="row">
             <div class="col-md-3">
-              <%= image_tag(@owner.photo_url(:thumb), class: "img-responsive md-margin-bottom-10") %>
+              <%= image_tag(@owner.photo_url(:thumb) || "/assets/profile.jpg", class: "img-responsive md-margin-bottom-10") %>
                 
             </div>
             <div class="col-md-7">

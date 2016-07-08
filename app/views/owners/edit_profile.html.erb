@@ -1,12 +1,16 @@
+<% content_for :breadcrumb do %>
+  <h1 class="pull-left">Edit Profile</h1>
+  <ul class="pull-right breadcrumb">
+      <li><a href="index.html">Home</a></li>     
+      <li class="active">Edit Profile</li>
+  </ul>
+<% end %>
 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 	<%= form_for @owner , html: {class: "reg-page"} do |f| %>
-		<div class="reg-header">
-	      <h2>Edit Profile</h2>                          
-	    </div>
 	    <%= f.label :photo %>
 	    <div class="row">
 	    	<div class="col-md-3">
-	    		<%= image_tag(@owner.photo_url(:thumb), size: "100x100", class: "margin-bottom-20") %>
+	    		<%= image_tag(@owner.photo_url(:thumb) || "/assets/profile.jpg", size: "100x100", class: "margin-bottom-20")%>
 	    	</div>
 	    	<div class="col-md-9">
 	    		<%= f.file_field :photo, class: "form-control margin-bottom-20" %>

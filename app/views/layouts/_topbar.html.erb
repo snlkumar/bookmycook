@@ -1,0 +1,28 @@
+<ul class="loginbar pull-right">
+	<% if user_signed_in? %> 
+    <li>
+      <a>My Account</a>
+    <ul class="lenguages">
+      <li class="active">
+      	<%= link_to 'Edit Profile', edit_profile_owner_path(id: current_user.owner ? current_user.owner.id : current_user.cook.id ) %>
+      </li>
+      <li class="active">
+        <%= link_to 'My Request', profile_owner_path(id: current_user.owner.id ) if current_user.owner%>
+      </li>
+      <li><%= link_to "Change your password", edit_user_registration_path %></li>
+    </ul>
+    </li>	                    
+    <li class="topbar-devider"></li>
+    <li>
+	  	<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>      
+  	</li>
+	<% else %>										  
+		<li>
+		  <%= link_to('Register', signup_owners_path)  %>  
+		</li>
+		<li class="topbar-devider"></li>
+	  <li>
+		  <%= link_to('Login', new_user_session_path)  %>  
+		</li>
+	<% end %>	                      
+</ul>

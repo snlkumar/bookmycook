@@ -5,7 +5,7 @@ class CooksController < ApplicationController
     layout "profile", :only => [ :profile, :dashboard, :edit_profile]
 
     def dashboard
-
+    	@cooks = Cook.all
     end    
 
 	def new		

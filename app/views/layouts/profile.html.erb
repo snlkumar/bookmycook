@@ -14,31 +14,7 @@
 	        <div class="topbar">
 	            <div class="container">
 	                <!-- Topbar Navigation -->
-	                <ul class="loginbar pull-right">
-	                	<% if user_signed_in? %> 
-	                    <li>
-	                      <a>My Account</a>
-                        <ul class="lenguages">
-                          <li class="active">
-                          	<%= link_to 'Edit Profile', edit_profile_owner_path(id: @owner.id) %>
-                          </li>
-                          <li><a href="#">Change Password</a></li>
-                        </ul>
-	                    </li>	                    
-	                    <li class="topbar-devider"></li>
-	                    <li>
-										  	<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>      
-									  	</li>
-										<% else %>										  
-											<li>
-											  <%= link_to('Register', signup_owners_path)  %>  
-											</li>
-											<li class="topbar-devider"></li>
-										  <li>
-											  <%= link_to('Login', new_user_session_path)  %>  
-											</li>
-										<% end %>	                      
-	                </ul>
+	                <%= render "/layouts/topbar" , locals: {user_signed_in?: user_signed_in? }%>
 	                <!-- End Topbar Navigation -->
 	            </div>
 	        </div>
