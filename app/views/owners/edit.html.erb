@@ -14,7 +14,7 @@
 			<%= u.text_field :email, class: "form-control margin-bottom-20" %>
 			<div id="verify">
 				<%= u.label :verification_code %>
-				<%= u.text_field :verification_code, class: "form-control margin-bottom-20" %> <a href="#" id="verify_link" data-disable-with="Verifing..." onclick='verify_code(this)'>Verify</a>
+				<%= u.text_field :verification_code, class: "form-control margin-bottom-20" %> <a href="javascript:void(0)" id="verify_link" data-disable-with="Verifing..." onclick='verify_code(this)'>Verify</a>
 				<%= u.hidden_field :is_verified %>
 			</div>			
 		<% end %>

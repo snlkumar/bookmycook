@@ -1,25 +1,24 @@
-<div class="col-md-12">
-                  <!--Profile Body-->
+<div class="col-md-12">                  
   <div class="profile-body">
-      <div class="profile-bio">
-          <div class="row">
-              <div class="col-md-3">
-                  <img class="img-responsive md-margin-bottom-10" src="/../assets/team/5.jpg" alt="">
-                  <a class="btn-u btn-u-sm" href="#">Change Picture</a>
-              </div>
-              <div class="col-md-7">
-                  <h2><%= @owner.name %></h2>
-                  <span><strong>State:</strong> <%= @owner.state %></span>
-                  <span><strong>Country:</strong> <%= @owner.country %></span>
-                  <hr>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget massa nec turpis congue bibendum. Integer nulla felis, porta suscipit nulla et, dignissim commodo nunc. Morbi a semper nulla.</p>
-                  <p>Proin mauris odio, pharetra quis ligula non, vulputate vehicula quam. Nunc in libero vitae nunc ultricies tincidunt ut sed leo. Sed luctus dui ut congue consequat. Cras consequat nisl ante, nec malesuada velit pellentesque ac. Pellentesque nec arcu in ipsum iaculis convallis.</p>
-              </div>
-          </div>    
-      </div><!--/end row-->
+    <div class="profile-bio">
+        <div class="row">
+            <div class="col-md-3">
+              <%= image_tag(@owner.photo_url(:thumb), class: "img-responsive md-margin-bottom-10") %>
+                
+            </div>
+            <div class="col-md-7">
+                <h3><%= @owner.name %></h3>
+                <hr>
+                <span><strong>State:</strong> <%= @owner.state %></span>
+                <span><strong>Country:</strong> <%= @owner.country %></span>
+                <hr>                
+            </div>
+            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i></h2>
+        </div>    
+    </div><!--/end row-->
               
-      <hr>
-
+    <hr>
+    <%= form_for(@owner) do |f| %>
       <div class="row">
           <!--Social Icons v3-->
           <div class="col-sm-6 sm-margin-bottom-30">
@@ -28,10 +27,15 @@
                       <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i> I need for</h2>
                       <a href="#"><i class="fa fa-cog pull-right"></i></a>
                   </div>
-                  <div class="panel-body">
-                       <ul class="list-unstyled social-contacts-v2">
-                       	                          
-                      </ul>
+                  <div class="panel-body">                      
+                    <div class="col col-4">
+                      <% availables.each do |available| %>
+                        <label class="checkbox">
+                          <%= check_box_tag "owner[available_ids][]", available.id, @owner.availables.include?(available) %>
+                            <%= available.name %>
+                          </label>
+                      <% end %>
+                    </div>                           
                   </div>       
               </div>
           </div>
@@ -41,18 +45,20 @@
           <div class="col-sm-6 sm-margin-bottom-30">
               <div class="panel panel-profile">
                   <div class="panel-heading overflow-h">
-                      <h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> Memebers</h2>
+                      <h2 class="panel-title heading-sm pull-left">Dish Types</h2>
                       <a href="#"><i class="fa fa-cog pull-right"></i></a>
                   </div>
-                  <div class="panel-body">
-                  	<div class="row">
-                           <div class="p-chart col-sm-6 col-xs-6 sm-margin-bottom-10">
-                              <div class="circle margin-bottom-20" id="circle-4"></div>
-                              <h3 class="heading-xs">Hindi</h3>
-                              <p><i class="fa fa-check" aria-hidden="true"></i> Read  <i class="fa fa-check" aria-hidden="true"></i> Write <i class="fa fa-check" aria-hidden="true"></i> Speak</p>
-                          </div>
-                      </div>
-                  </div>
+                  <div class="panel-body">                      
+                    <div class="col col-4">
+                      <% dish_types.each do |dish_type| %>
+                        <label class="checkbox">
+                          <%= check_box_tag "owner[dish_type_ids][]", dish_type.id, @owner.dish_types.include?(dish_type)%>
+                          <%= dish_type.name %>
+                        </label>
+                      <% end %>
+                    </div>
+                           
+                  </div>       
               </div>
           </div>    
           <!--End Skills-->                    
@@ -64,99 +70,47 @@
           <div class="col-sm-6">
               <div class="panel panel-profile">
                   <div class="panel-heading overflow-h">
-                      <h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> Locations For </h2>
+                      <h2 class="panel-title heading-sm pull-left"> Locations For </h2>
                       <a href="#"><i class="fa fa-cog pull-right"></i></a>
                   </div>
                   <div class="panel-body">
-                      <ul class="list-unstyled social-contacts-v3">
-                      <% need_for =  @owner.location ? @owner.location.split(",") : []%>
-                        <%need_for.each do |a| %>
-                          <li><%= a %></li>                         
-                      <% end %>                  	
-						
-                      </ul>
+                    <div class="col col-4">
+                      <% locations.each do |location| %>
+                        <label class="radio">
+                          <%= f.radio_button :location, location.id, checked: f.object.location.to_i == location.id %><i class="rounded-x"></i><%= location.name %>
+                        </label>                        
+                      <% end %>
+                    </div>
                   </div>
               </div>
-          </div>    
-          <!--End Social Contacts v2-->
-
-          <!--Design Skills-->
-          <div class="col-sm-6">
-              <div class="panel panel-profile">
-                  <div class="panel-heading overflow-h">
-                      <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i> Language Skills</h2>
-                      <a href="#"><i class="fa fa-cog pull-right"></i></a>
-                  </div>
-                  <div class="panel-body">
-                      <div class="row">
-                           <div class="p-chart col-sm-6 col-xs-6 sm-margin-bottom-10">
-                              <div class="circle margin-bottom-20" id="circle-4"></div>
-                              <h3 class="heading-xs">Hindi</h3>
-                              <p><i class="fa fa-check" aria-hidden="true"></i> Read  <i class="fa fa-check" aria-hidden="true"></i> Write <i class="fa fa-check" aria-hidden="true"></i> Speak</p>
-                          </div> 
-                          <div class="p-chart col-sm-6 col-xs-6 sm-margin-bottom-10">
-                              <div class="circle margin-bottom-20" id="circle-4"></div>
-                              <h3 class="heading-xs">English</h3>
-                              <p><i class="fa fa-check" aria-hidden="true"></i> Read  <i class="fa fa-check" aria-hidden="true"></i> Write <i class="fa fa-times" aria-hidden="true"></i> Speak</p>
-                          </div> 
-                      </div>
-                  </div>       
-              </div>
-          </div>
+          </div>   
 
           <div class="col-sm-6">
               <div class="panel panel-profile">
                   <div class="panel-heading overflow-h">
-                      <h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> Rating </h2>
+                      <h2 class="panel-title heading-sm pull-left"> Members </h2>
                       <a href="#"><i class="fa fa-cog pull-right"></i></a>
                   </div>
                   <div class="panel-body">
-                      <ul class="list-unstyled social-contacts-v3">
-                      	                      
-                      </ul>
+                    <div class="col-sm-6">
+                      <%= f.label :adults %>
+                      <%= f.text_field :adults, class: "form-control margin-bottom-20" %>
+                    </div>
+                    <div class="col-sm-6">
+                      <%= f.label :children, 'Childreen' %>
+                      <%= f.text_field :children, class: "form-control margin-bottom-20"%>
+                    </div>
                   </div>
               </div>
-          </div>  
-          <!--End Design Skills--> 
+          </div>           
       </div>                    
-      <br>
-      <!--Timeline-->
-      <div class="panel panel-profile">
-          <div class="panel-heading overflow-h">
-              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i> Experience</h2>
-              <a href="#"><i class="fa fa-cog pull-right"></i></a>
-          </div>
-          <div class="panel-body margin-bottom-40">
-              <ul class="timeline-v2 timeline-me">
-                  <li>
-                      <time datetime="" class="cbp_tmtime"><span>Mobile Design</span> <span>2012 - Current</span></time>
-                      <i class="cbp_tmicon rounded-x hidden-xs"></i>
-                      <div class="cbp_tmlabel">
-                          <h2>BFC NYC Partners</h2>
-                          <p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Peasprouts wattle seed rutabaga okra yarrow cress avocado grape.</p> 
-                      </div>
-                  </li>
-                  <li>
-                      <time datetime="" class="cbp_tmtime"><span>Web Designer</span> <span>2007 - 2012</span></time>
-                      <i class="cbp_tmicon rounded-x hidden-xs"></i>
-                      <div class="cbp_tmlabel">
-                      <h2>Freelance</h2>
-                          <p>Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce.</p>
-                      </div>
-                  </li>
-                  <li>
-                      <time datetime="" class="cbp_tmtime"><span>Photodesigner</span> <span>2003 - 2007</span></time>
-                      <i class="cbp_tmicon rounded-x hidden-xs"></i>
-                      <div class="cbp_tmlabel">
-                      <h2>Toren Condo</h2>
-                          <p>Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot.</p>
-                      </div>
-                  </li>
-              </ul>
-          </div>    
+     <div class="row">
+        <div class="col-lg-6">                                
+        </div>
+        <div class="col-lg-6 text-right">
+          <%= f.submit "Update", class: "btn-u"  %>                                      
+        </div>
       </div>
-      <!--End Timeline-->
-
-  </div>
-  <!--End Profile Body-->
+    <% end %>
+  </div> 
 </div>

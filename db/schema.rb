@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623035321) do
+ActiveRecord::Schema.define(version: 20160707191455) do
 
   create_table "availables", force: :cascade do |t|
     t.string   "name"
@@ -65,6 +65,11 @@ ActiveRecord::Schema.define(version: 20160623035321) do
     t.boolean  "is_active",  default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "dish_types_owners", id: false, force: :cascade do |t|
+    t.integer "owner_id"
+    t.integer "dish_type_id"
   end
 
   create_table "languages", force: :cascade do |t|

@@ -1,8 +1,9 @@
 class OwnersController < ApplicationController	
 	before_action :login_required, only: [:edit, :update, :edit_profile]
-	before_action :owner, except: [:signup, :create, :dashboard]	
-    respond_to :json, :html
+	before_action :owner, except: [:signup, :create, :dashboard]
+	# before_action :verify_account, only: [:edit_profile]    
     layout "profile", :only => [ :profile, :dashboard ]
+    respond_to :json, :html
 
     def dashboard
     end    
@@ -38,8 +39,7 @@ class OwnersController < ApplicationController
 	end
 
 	def verify		
-		owner = Owner.includes(:user).find(params[:id])
-		resp = ""
+		owner = Owner.includes(:user).find(params[:id])		
 		if owner.user.authenticate_otp(params[:code], drift: 50)
 			render json: {status: 400 }
 		else
@@ -59,5 +59,10 @@ class OwnersController < ApplicationController
 	private
 	def owner
 		@owner = Owner.find params[:id]
+	end
+
+	def verify_account
+		debugger
+		redirect_to edit_owner_path(id: current_user.owner.id) unless current_user.is_verified
 	end
 end
