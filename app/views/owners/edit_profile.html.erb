@@ -39,7 +39,11 @@
 			<%= f.label :location_for %>
 			<% @locations.each do |location| %>
 				<label class="form-control margin-bottom-20">
-				  	<%= check_box_tag "owner[location][]", location.id, @owner.location.split(',').include?(location.id) %>
+					<% if @owner.location %>
+				  		<%= check_box_tag "owner[location][]", location.id, @owner.location.split(',').include?(location.id) %>
+				  	<% else %>
+				  		<%= check_box_tag "owner[location][]", location.id %>
+				  	<% end %>
 				  	<%= location.name %>
 			  	</label>
 			<% end %>

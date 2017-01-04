@@ -14,6 +14,7 @@ class OwnersController < ApplicationController
 	end
 
 	def create
+		debugger
 		@owner = Owner.new params[:owner].permit!
 		return render "signup" unless @owner.save		
 		sign_in @owner.user, :bypass => true 	

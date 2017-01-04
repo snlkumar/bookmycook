@@ -8,6 +8,7 @@ class Owner < ActiveRecord::Base
 	after_create :send_otp
 
 	def send_otp
+		debugger
 		Typhoeus.get("http://api.msg91.com/api/sendhttp.php?authkey=116833AGwj2DXk3Jc577aa295&mobiles=#{self.mobile}&message=#{self.user.otp_code}&sender=Bookmy&route=4&country=91")	
 	end
 end
