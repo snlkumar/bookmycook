@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     if resource.cook
       edit_profile_cook_path(id: current_user.cook.id)
     else
-      edit_profile_owner_path(id: current_user.owner.id)
+      edit_profile_owner_path(current_user.owner)
     end
   end
 

@@ -4,10 +4,10 @@
       <a>My Account</a>
     <ul class="lenguages">
       <li class="active">
-      	<%= link_to 'Edit Profile', edit_profile_owner_path(id: current_user.owner ? current_user.owner.id : current_user.cook.id ) %>
+      	<%= link_to 'Edit Profile', edit_profile_owner_path(current_user.owner ? current_user.owner : current_user.cook ) %>
       </li>
       <li class="active">
-        <%= link_to 'My Request', profile_owner_path(id: current_user.owner.id ) if current_user.owner%>
+        <%= link_to 'My Request', profile_owner_path(current_user.owner) if current_user.owner%>
       </li>
       <li><%= link_to "Change your password", edit_user_registration_path %></li>
     </ul>

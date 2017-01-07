@@ -11,6 +11,7 @@ class CreateOwners < ActiveRecord::Migration
         t.string :language
     	t.integer :adults
     	t.integer :children
+        t.string :reference
     	t.boolean :want_demo, default: false
     	t.string :photo
       t.timestamps null: false

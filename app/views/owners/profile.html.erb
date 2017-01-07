@@ -1,11 +1,7 @@
-<% content_for :breadcrumb do %>
-  <h1 class="pull-left">Cook Request</h1>
-  <ul class="pull-right breadcrumb">
-      <li><a href="index.html">Home</a></li>     
-      <li class="active">Cook Request</li>
-  </ul>
-<% end %>
-<div class="col-md-12">                  
+
+
+<div class="col-md-12"> 
+  <%= flash[:notice] %>                 
   <div class="profile-body">
     <div class="profile-bio">
         <div class="row">
@@ -19,8 +15,7 @@
                 <span><strong>State:</strong> <%= @owner.state %></span>
                 <span><strong>Country:</strong> <%= @owner.country %></span>
                 <hr>                
-            </div>
-            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i></h2>
+            </div>            
         </div>    
     </div><!--/end row-->
               
@@ -115,7 +110,7 @@
         <div class="col-lg-6">                                
         </div>
         <div class="col-lg-6 text-right">
-          <%= f.submit "Update", class: "btn-u"  %>                                      
+          <%= f.submit "Create Request", class: "btn-u"  %>
         </div>
       </div>
     <% end %>

@@ -30,7 +30,7 @@
 
 /*Panel Title Box*/
 .profile .panel-profile {
-	border: none;
+	border: 1px solid gainsboro;
 	margin-bottom: 0;
 	box-shadow: none;
 }
@@ -463,6 +463,7 @@
 /*Profile Biography*/
 .profile .profile-bio {
 	background: #fff;
+	border: 1px solid gainsboro;
 	position: relative;
 	padding: 15px 10px 5px 15px;
 }

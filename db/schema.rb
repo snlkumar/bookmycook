@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707191455) do
+ActiveRecord::Schema.define(version: 20170107174608) do
 
   create_table "availables", force: :cascade do |t|
     t.string   "name"
@@ -104,10 +104,12 @@ ActiveRecord::Schema.define(version: 20160707191455) do
     t.string   "language"
     t.integer  "adults"
     t.integer  "children"
+    t.string   "reference"
     t.boolean  "want_demo",  default: false
     t.string   "photo"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "slug"
   end
 
   create_table "rates", force: :cascade do |t|
